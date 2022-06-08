@@ -3,7 +3,6 @@
 {% block title %}Phone Book{% endblock %}
 
 {% block content %}
-    <h3>Home Page</h3>
     <form method='post' action="/">
         {{form.csrf_token}}
         <div>
@@ -16,6 +15,9 @@
 
             {{ form.mobile_phone.label }}
             {{ form.mobile_phone(class='form-control', placeholder='(###) ###-####') }}
+
+            {{ form.email.label }}
+            {{ form.email(class='form-control', placeholder='email@url.com') }}
 
             {{ form.submit(class='btn btn-primary mt-3')}}
 
