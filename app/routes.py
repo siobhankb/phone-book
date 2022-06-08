@@ -11,5 +11,7 @@ def home():
 def signup():
     form = ContactForm()
     if form.validate_on_submit():
+        print('Okie dokie, artichokie')
         flash('Contact successfully added!', 'success')
+        return redirect(url_for('signup'))
     return render_template('signup.html', form=form)
