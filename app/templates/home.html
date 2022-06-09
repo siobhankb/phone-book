@@ -3,19 +3,26 @@
 {% block title %}Phone Book{% endblock %}
 
 {% block content %}
-    <h4>Phancy Phone Book</h4>
-    <div class="card border-0">
-        <img src="/app/assets/phone-book.jpg" class="card-img-top" alt="photo of an old yellow pages phone book">
-        <div class="card-body">
-        <p class="card-text">This one can't be used as a door stop.</p>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="/app/assets/tower_of_phone_books.jpg" class="img-fluid rounded-start" alt="tower of old phone books with joke about the internet">
     </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Phancy Phone Book</h5>
+        <p class="card-text">This one can't be used as a door stop.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
     {% for contact in contacts %}
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">{{ contact.full_name }}</h5>
+            <h5 class="card-title">{{ contact.first_name }} {{ contact.last_name }}</h5>
             <h6 class="card-subtitle">mobile: {{ contact.mobile }}</h6>
+            <h6 class="card-subtitle text-muted">work: {{ contact.work }}</h6>
             <h6 class="card-subtitle">email: {{ contact.email }}</h6>
           </div>
         </div>
