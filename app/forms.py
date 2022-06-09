@@ -1,12 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import FormField, StringField, IntegerField, EmailField, SubmitField
+from wtforms import StringField, EmailField, SubmitField
 # pip install email_validator 
 from wtforms.validators import InputRequired, Email
 
-class TelephoneForm(FlaskForm):
-    country_code = IntegerField('Country Code', validators=[InputRequired()])
-    area_code    = IntegerField('Area Code/Exchange', validators=[InputRequired()])
-    number       = StringField('Number')
 
 class ContactForm(FlaskForm):
     first_name   = StringField('First Name', validators=[InputRequired()])

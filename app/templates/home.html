@@ -3,11 +3,22 @@
 {% block title %}Phone Book{% endblock %}
 
 {% block content %}
-    <h4>Welcome to Your Phancy Phone Book</h4>
+    <h4>Phancy Phone Book</h4>
     <div class="card border-0">
         <img src="/app/assets/phone-book.jpg" class="card-img-top" alt="photo of an old yellow pages phone book">
         <div class="card-body">
         <p class="card-text">This one can't be used as a door stop.</p>
     </div>
 </div>
+
+    {% for contact in contacts %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ contact.full_name }}</h5>
+            <h6 class="card-subtitle">mobile: {{ contact.mobile }}</h6>
+            <h6 class="card-subtitle">email: {{ contact.email }}</h6>
+          </div>
+        </div>
+    {% endfor %}
+
 {% endblock %}
