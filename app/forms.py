@@ -1,13 +1,23 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, SubmitField
+from wtforms import StringField, EmailField, PasswordField, SubmitField
 # pip install email_validator 
-from wtforms.validators import InputRequired, Email
+from wtforms.validators import DataRequired, Email, EqualTo
 
+class NewUserForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_pass = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField()
 
-class ContactForm(FlaskForm):
-    first_name   = StringField('First Name', validators=[InputRequired()])
-    last_name    = StringField('Last Name', validators=[InputRequired()])
-    mobile = StringField('Mobile Phone', validators=[InputRequired()])
-    work_phone = StringField('Work Phone', validators=[InputRequired()])
+class AddContactForm(FlaskForm):
+    first_name   = StringField('First Name', validators=[DataRequired()])
+    last_name    = StringField('Last Name', validators=[DataRequired()])
+    mobile = StringField('Mobile Phone', validators=[DataRequired()])
+    work_phone = StringField('Work Phone', validators=[DataRequired()])
     email = EmailField('Email Address', validators=[Email()])
+    submit = SubmitField()
+
+class LoginForm(FlaskForm):
+    email = StringField('User email', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField()

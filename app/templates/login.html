@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Phancy Phone Book | Log in {% endblock %}
+
+{% block content %}
+<h4>Log In:</h4>
+<form method = 'post'>
+  {{ form.csrf_token }}
+  <div class="form-group">
+  {{ form.email.label }}
+  {{ form.email(class='form-control', placeholder='Enter User Email') }}
+
+  {{ form.password.label }}
+  {{ form.password(class='form-control', placeholder='Enter Password') }}
+
+  {{ form.submit(class='btn btn-primary mt-3')}}
+  </div>
+
+{% endblock %}
