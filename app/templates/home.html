@@ -3,6 +3,12 @@
 {% block title %}Phone Book{% endblock %}
 
 {% block content %}
+
+<h3>Welcome to the Phancy Phone Book</h3>
+
+{% if contacts != [] %}
+  <h5>Welcome {{ current_user.email }} </h5>
+
 <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
@@ -24,8 +30,20 @@
             <h6 class="card-subtitle">mobile: {{ contact.mobile }}</h6>
             <h6 class="card-subtitle text-muted">work: {{ contact.work }}</h6>
             <h6 class="card-subtitle">email: {{ contact.email }}</h6>
+            <br>
+            <a href="{{ url_for('view_single_contact', contact_id=contact.id) }}"><p class="fst-italic fs-6">View/Edit Contact</p></a>
           </div>
         </div>
     {% endfor %}
+
+  {% else %}
+  <div>
+    <h4>Please sign in to view your contacts</h4>
+    <br>
+    <a class="btn btn-secondary mt-3" href="{{ url_for('login') }}" role="button">Log in</a>
+  </div>
+    
+
+  {% endif %}
 
 {% endblock %}

@@ -9,7 +9,7 @@ class NewUserForm(FlaskForm):
     confirm_pass = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField()
 
-class AddContactForm(FlaskForm):
+class ContactForm(FlaskForm):
     first_name   = StringField('First Name', validators=[DataRequired()])
     last_name    = StringField('Last Name', validators=[DataRequired()])
     mobile = StringField('Mobile Phone', validators=[DataRequired()])

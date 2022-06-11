@@ -6,13 +6,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" href="{{ url_for('signup') }}">Sign Up<a>
-      </div>
-            <div class="navbar-nav">
         <a class="nav-link active" href="{{ url_for('login') }}">Log in<a>
       </div>
       <div class="navbar-nav">
+        <a class="nav-link active" href="{{ url_for('signup') }}">Sign Up<a>
+      </div>
+      <div class="navbar-nav">
         <a class="nav-link active" href="{{ url_for('add_contact') }}">Add Contact<a>
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link active" href="{{ url_for('logout') }}">Log Out<a>
       </div>
     </div>
   </div>
