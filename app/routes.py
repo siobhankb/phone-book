@@ -54,7 +54,7 @@ def signup():
         # show message of success/failure
         flash(f'{new_user.email} has successfully signed up!', 'success')
         #redirect back to the homepage
-        return redirect(url_for('add_contact'))
+        return redirect(url_for('login'))
 
     return render_template('signup.html', form=form)
 
@@ -64,7 +64,6 @@ def signup():
 @login_required
 def add_contact():
     form = ContactForm()
-    flash(f'user = {current_user.id}', 'primary')
 
     if form.validate_on_submit():
         first_name = form.first_name.data
