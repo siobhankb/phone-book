@@ -3,8 +3,13 @@
 {% block title %}Phancy Phone Book | {{ contact.first_name }} {{ contact.last_name }}{% endblock %}
 
 {% block content %}
+<br>
     <div class="card">
-        <div class="card-header fs-1 fw-bold"> {{ contact.first_name }} {{ contact.last_name }}</div>
+        <div class="card-header">
+            <h5 class="card-title">
+                <strong>{{ contact.first_name }} {{ contact.last_name }}</strong>
+            </h5>
+        </div>
         <div class="card-body">
         <blockquote class="blockquote mb-0">
             <p><span class="fw-bold">mobile:</span> {{ contact.mobile }}</p>

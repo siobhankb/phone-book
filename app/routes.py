@@ -5,7 +5,7 @@ from app.forms import ContactForm, NewUserForm, LoginForm
 from app.models import User, Contact
 
 #homepage - displays user's address book
-@app.route('/home')
+@app.route('/')
 def home():
     if current_user.is_authenticated:
         contacts=Contact.query.filter(Contact.user_id == current_user.id).all()
