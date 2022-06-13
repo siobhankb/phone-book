@@ -10,13 +10,33 @@
             <p> <strong>mobile:</strong> {{ contact.mobile }}</p>
             <p> <strong>work:</strong> {{ contact.work }}</p>
             <p> <strong>email:</strong> {{ contact.email }}</p>
-            <footer class="blockquote-footer">{{ contact.owner.email }}></footer>
+            <footer class="blockquote-footer">{{ contact.user.email }}></footer>
         </blockquote>
         </div>
     </div>
 
     <!-- button to edit the contact -->
     <a href="{{ url_for('edit_single_contact', contact_id=contact.id) }}" class="btn btn-success">Edit contact</a>
-
+    <!-- button to delete the contact -->
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete Contact</button>
+    
+    <!-- pop-up window to ask user if they want to delete -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete Contact?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to delete contact entry for '{{ contact.first_name }} {{contact.last_name}}?'
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <a href="{{ url_for('delete_contact', contact_id=contact.id) }}" class="btn btn-danger">DELETE</a>
+        </div>
+        </div>
+    </div>
+    </div>
 
 {% endblock %}

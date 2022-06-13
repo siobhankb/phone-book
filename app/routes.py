@@ -34,7 +34,7 @@ def login():
     
     return render_template('login.html', form=form)
 
-#signup - new phone book owner/user
+#signup - new phone book user
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = NewUserForm()
@@ -65,8 +65,7 @@ def signup():
 def add_contact():
     form = ContactForm()
     flash(f'user = {current_user.id}', 'primary')
-    contact_list = Contact.query.filter(Contact.user_id == current_user.id).all()
-    flash(f'users contacts = {contact_list})', 'primary')
+
     if form.validate_on_submit():
         first_name = form.first_name.data
         last_name = form.last_name.data
@@ -74,15 +73,11 @@ def add_contact():
         work = form.work_phone.data
         email = form.email.data
         user_id = current_user.id
-        # duplicate_check = Contact.query.filter(Contact.user_id == current_user.id and Contact.email == email).all()
-        # if duplicate_check:
-        #     flash(f'An entry for{first_name} {last_name} already exits.', 'warning')
-        #     return redirect(url_for('signup'))
 
         new_contact = Contact(first_name = first_name, last_name=last_name, mobile=mobile, work_ph=work, email=email, user_id=user_id)
 
         flash(f"{new_contact.first_name} {new_contact.last_name}'s contact added to Phancy Phone Book!", 'success')
-        return redirect(url_for('add_contact'))
+        return redirect(url_for('home'))
     return render_template('new_contact.html', form=form)
 
 @app.route('/contacts/<contact_id>')
@@ -95,19 +90,19 @@ def view_single_contact(contact_id):
 @login_required
 def edit_single_contact(contact_id):
     contact_to_edit = Contact.query.get_or_404(contact_id)
-    if current_user != contact_to_edit.owner:
+    if current_user != contact_to_edit.user:
         flash("You do not have permission to edit this contact", "danger")
         return redirect(url_for('home'))
     form = ContactForm()
     if form.validate_on_submit():
         # Get form data
-        first_name = form.first_name.data
-        last_name = form.last_name.data
-        mobile = form.mobile.data
-        work = form.work_phone.data
-        email = form.email.data
+        new_first_name = form.first_name.data
+        new_last_name = form.last_name.data
+        new_mobile = form.mobile.data
+        new_work = form.work_phone.data
+        new_email = form.email.data
         # update the post to edit with the form data
-        contact_to_edit.update(first_name=first_name, last_name=last_name, mobile=mobile, work=work, email=email)
+        contact_to_edit.update(first_name=new_first_name, last_name=new_last_name, mobile=new_mobile, work_ph=new_work, email=new_email)
 
         flash(f'{contact_to_edit.email} has been updated', 'primary')
         return redirect(url_for('view_single_contact', contact_id=contact_to_edit.id))
@@ -116,14 +111,14 @@ def edit_single_contact(contact_id):
 
 @app.route('/delete-contacts/<contact_id>')
 @login_required
-def delete_single_contact(contact_id):
+def delete_contact(contact_id):
     contact_to_delete = Contact.query.get_or_404(contact_id)
-    # if current_user != contact_to_delete.owner:
-    #     flash("You do not have permission to delete this contact", "danger")
-    #     return redirect(url_for('index'))
+    if current_user != contact_to_delete.user:
+        flash("You do not have permission to delete this contact", "danger")
+        return redirect(url_for('home'))
     contact_to_delete.delete()
-    flash(f'{contact_to_delete.title} has been deleted', 'info')
-    return redirect(url_for('index'))
+    flash(f'Entry for {contact_to_delete.first_name} {contact_to_delete.last_name} has been deleted', 'info')
+    return redirect(url_for('home'))
 
 @app.route('/logout')
 def logout():

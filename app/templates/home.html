@@ -12,7 +12,7 @@
 <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="/app/assets/tower_of_phone_books.jpg" class="img-fluid rounded-start" alt="tower of old phone books with joke about the internet">
+      <img src="../assets/phone-book_tower.png" class="img-fluid rounded-start" alt="tower of old phone books with joke about the internet">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -30,8 +30,7 @@
             <h6 class="card-subtitle">mobile: {{ contact.mobile }}</h6>
             <h6 class="card-subtitle text-muted">work: {{ contact.work }}</h6>
             <h6 class="card-subtitle">email: {{ contact.email }}</h6>
-            <br>
-            <a href="{{ url_for('view_single_contact', contact_id=contact.id) }}"><p class="fst-italic fs-6">View/Edit Contact</p></a>
+            <a href="{{ url_for('view_single_contact', contact_id=contact.id) }}"><p style="font-size:small; color:darkcyan"><em>Edit Contact</em></p></a>
           </div>
         </div>
     {% endfor %}

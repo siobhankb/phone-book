@@ -42,3 +42,15 @@ class Contact(db.Model):
 
     def __repr__(self):
         return f"<Contact | {self.email} >< First | {self.first_name} >< Last | {self.last_name}>"
+
+    def update(self, first_name, last_name, mobile, work_ph, email):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.mobile = mobile
+        self.work_ph = work_ph
+        self.email = email
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
