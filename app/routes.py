@@ -64,16 +64,19 @@ def signup():
 @login_required
 def add_contact():
     form = ContactForm()
+    flash(f'user = {current_user.id}', 'primary')
+    contact_list = Contact.query.filter(Contact.user_id == current_user.id).all()
+    flash(f'users contacts = {contact_list})', 'primary')
     if form.validate_on_submit():
         first_name = form.first_name.data
         last_name = form.last_name.data
         mobile = form.mobile.data
         work = form.work_phone.data
         email = form.email.data
-        duplicate_check = Contact.query.filter((Contact.user_id == current_user.id and Contact.email == email)).all()
-        if duplicate_check:
-            flash(f'An entry for{first_name} {last_name} already exits.', 'warning')
-            return redirect(url_for('signup'))
+        # duplicate_check = Contact.query.filter(Contact.user_id == current_user.id and Contact.email == email).all()
+        # if duplicate_check:
+        #     flash(f'An entry for{first_name} {last_name} already exits.', 'warning')
+        #     return redirect(url_for('signup'))
 
         new_contact = Contact(first_name = first_name, last_name=last_name, mobile=mobile, work_ph=work, email=email)
 

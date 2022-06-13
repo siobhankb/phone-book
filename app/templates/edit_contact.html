@@ -8,19 +8,19 @@
         <div>
 
             {{ form.first_name.label }}
-            {{ form.first_name(class='form-control', placeholder='contact first name') }}
+            {{ form.first_name(class='form-control', placeholder= contact.first_name ) }}
 
             {{ form.last_name.label }}
-            {{ form.last_name(class='form-control', placeholder='contact last name') }}
+            {{ form.last_name(class='form-control', placeholder= contact.last_name ) }}
 
             {{ form.mobile.label }}
-            {{ form.mobile(class='form-control', placeholder='(###) ###-####') }}
+            {{ form.mobile(class='form-control', placeholder= contact.mobile ) }}
 
             {{ form.work_phone.label }}
-            {{ form.work_phone(class='form-control', placeholder='(###) ###-####') }}
+            {{ form.work_phone(class='form-control', placeholder= contact.work_ph ) }}
 
             {{ form.email.label }}
-            {{ form.email(class='form-control', placeholder='email@url.com') }}
+            {{ form.email(class='form-control', placeholder= contact.email ) }}
 
             <div>{{ form.submit(class='btn btn-primary mt-3')}} <a class="btn btn-secondary mt-3" href="{{ url_for('home') }}" role="button">Cancel</a></div>
             

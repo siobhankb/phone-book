@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(256), nullable = False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    contacts = db.relationship('Contact', backref='owner') # <-- this is how to set up a foreign key!!
+    contacts = db.relationship('Contact', backref='user') # <-- this is how to set up a foreign key!!
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -33,7 +33,7 @@ class Contact(db.Model):
     mobile = db.Column(db.String(17), unique=True, nullable=False)
     work_ph = db.Column(db.String(17), nullable=True)
     email = db.Column(db.String(50), unique=True, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) #references 'user' in table 
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) #references 'user' in table 
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -41,4 +41,4 @@ class Contact(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f"<Contact|{self.title} /\ First|{self.first_name} /\ Last|{self.last_name}>"
+        return f"<Contact | {self.email} >< First | {self.first_name} >< Last | {self.last_name}>"
