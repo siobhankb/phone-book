@@ -15,9 +15,7 @@ project: build a phone book CRUD web application using flask
 
 ###UPDATE contact:
 ![phone-book-edit-contact](https!://user-images.githubusercontent.com/102388962/182243868-d868dd9c-2417-412d-b6da-96085e9baaac.png)
-[phone-book-edit-contact-page](https://user-images.githubusercontent.com/102388962/182244058-40e1d8aa-bc9c-4e9c-b3ac-9555e3adaaf5.png)
-
-
+![phone-book-edit-contact-page](https://user-images.githubusercontent.com/102388962/182244058-40e1d8aa-bc9c-4e9c-b3ac-9555e3adaaf5.png)
 
 ###DELETE contact:
 ![phone-book-delete-contact](https://user-images.githubusercontent.com/102388962/182243162-359e7bfc-b922-4daf-8e90-68ea8e6be018.png)
