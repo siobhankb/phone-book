@@ -3,24 +3,22 @@
 {% block title %}Phone Book{% endblock %}
 
 {% block content %}
-
-<h3>Phancy Phone Book</h3>
-
-  {% if current_user.is_anonymous == False %}
-  <h5>Welcome, {{ current_user.email }} </h5>
-  <div class="card mb-3" style="max-width: 540px;">
+<div class="card mb-3" style="max-width: 600px;">
     <div class="row g-0">
       <div class="col-md-4">
-        <!-- <img src="../assets/phone-book_tower.png" class="img-fluid rounded-start" alt="tower of old phone books with joke about the internet"> -->
+        <img src="{{ img_url }}" alt="tower of old phone books with joke about the internet"  class="img-fluid img-thumbnail" >
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">Phancy Phone Book</h5>
+          <h3 class="card-title">Phancy Phone Book</h3>
           <p class="card-text"> <em>This one can't be used as a door stop.<em></p>
         </div>
       </div>
     </div>
   </div>
+  {% if current_user.is_anonymous == False %}
+  <h5>Welcome, {{ current_user.email }} </h5>
+  
 
   {% if contacts != [] %}
     {% for contact in contacts %}

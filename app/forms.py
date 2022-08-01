@@ -12,9 +12,9 @@ class NewUserForm(FlaskForm):
 class ContactForm(FlaskForm):
     first_name   = StringField('First Name', validators=[DataRequired()])
     last_name    = StringField('Last Name', validators=[DataRequired()])
-    mobile = StringField('Mobile Phone', validators=[DataRequired()])
-    work_phone = StringField('Work Phone', validators=[DataRequired()])
-    email = EmailField('Email Address', validators=[Email()])
+    mobile = StringField('Mobile', validators=[DataRequired()])
+    work_phone = StringField('Work', validators=[DataRequired()])
+    email = EmailField('Email', validators=[Email()])
     submit = SubmitField()
 
 class LoginForm(FlaskForm):
