@@ -20,3 +20,6 @@ project: build a phone book CRUD web application using flask
 ###DELETE contact:
 ![phone-book-delete-contact](https://user-images.githubusercontent.com/102388962/182243162-359e7bfc-b922-4daf-8e90-68ea8e6be018.png)
 ![phone-book-delete-confirm](https://user-images.githubusercontent.com/102388962/182243175-aa81d7bd-67bb-42ea-8e9a-9c4b73e1323e.png)
+
+####Data stored in SQL Database:
+![phone-book-db](https://user-images.githubusercontent.com/102388962/182244637-f33cef28-76a4-457c-aac0-95099735b497.png)
