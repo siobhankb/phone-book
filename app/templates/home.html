@@ -4,50 +4,49 @@
 
 {% block content %}
 
-<h3>Phancy Phone Book</h3>
-
-  {% if current_user.is_anonymous == False %}
-  <h5>Welcome, {{ current_user.email }} </h5>
-  <div class="card mb-3" style="max-width: 540px;">
+  <div class="card mb-3" style="max-width: 600px;">
     <div class="row g-0">
       <div class="col-md-4">
-        <!-- <img src="../assets/phone-book_tower.png" class="img-fluid rounded-start" alt="tower of old phone books with joke about the internet"> -->
+        <img src="{{ img_url }}" alt="tower of old phone books with joke about the internet"  class="img-fluid img-thumbnail" >
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">Phancy Phone Book</h5>
-          <p class="card-text"> <em>This one can't be used as a door stop.<em></p>
+          <h3 class="card-title">Phancy Phone Book</h3>
+          <p class="card-text"> <i>This one can't be used as a door stop.<i></p>
         </div>
       </div>
     </div>
   </div>
 
-  {% if contacts != [] %}
-    {% for contact in contacts %}
-        <div class="card">
-          <div class="card-body">
-            <p><h4 class="card-title">{{ contact.first_name }} {{ contact.last_name }}</h4></p>
-            <p><h6 class="card-subtitle">mobile: {{ contact.mobile }}</h6></p>
-            <p><h6 class="card-subtitle">work: {{ contact.work_ph }}</h6></p>
-            <h6 class="card-subtitle">email: {{ contact.email }}</h6></p>
-            <a href="{{ url_for('view_single_contact', contact_id=contact.id) }}"><p style="font-size:small; color:darkcyan"><em>Edit Contact</em></p></a>
+  {% if current_user.is_anonymous == False %}
+    <h5>Welcome, {{ current_user.email }} </h5>
+
+    {% if contacts != [] %}
+      {% for contact in contacts %}
+          <div class="card">
+            <div class="card-body">
+              <p><h4 class="card-title">{{ contact.first_name }} {{ contact.last_name }}</h4></p>
+              <p><h6 class="card-subtitle">mobile: {{ contact.mobile }}</h6></p>
+              <p><h6 class="card-subtitle">work: {{ contact.work_ph }}</h6></p>
+              <h6 class="card-subtitle">email: {{ contact.email }}</h6></p>
+              <a href="{{ url_for('view_single_contact', contact_id=contact.id) }}"><p style="font-size:small; color:darkcyan"><em>Edit Contact</em></p></a>
+            </div>
           </div>
+      {% endfor %}
+    {% else %}
+        <div>
+          <h4>Let's create some contacts!</h4>
+          <br>
+          <a class="btn btn-success mt-3" href="{{ url_for('add_contact') }}" role="button">Add Contact</a>
         </div>
-    {% endfor %}
-  {% else %}
-      <div>
-        <h4>Let's create some contacts!</h4>
-        <br>
-        <a class="btn btn-success mt-3" href="{{ url_for('add_contact') }}" role="button">Add Contact</a>
-      </div>
-  {% endif %}
+    {% endif %}
 
   {% else %}
-  <div>
-    <h4>Please sign in to view your contacts</h4>
-    <br>
-    <a class="btn btn-secondary mt-3" href="{{ url_for('login') }}" role="button">Log in</a>
-  </div>
+    <div>
+      <h4>Please log in to view your contacts</h4>
+      <br>
+      <a class="btn btn-secondary mt-3" href="{{ url_for('login') }}" role="button">Log in</a>
+    </div>
     
   {% endif %}
 

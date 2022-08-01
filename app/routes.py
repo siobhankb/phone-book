@@ -4,14 +4,16 @@ from flask_login import login_user, login_required, logout_user, current_user
 from app.forms import ContactForm, NewUserForm, LoginForm
 from app.models import User, Contact
 
+
 #homepage - displays user's address book
 @app.route('/')
 def home():
+    img_url = url_for('static', filename='/tower_of_phone_books.jpg')
     if current_user.is_authenticated:
         contacts=Contact.query.filter(Contact.user_id == current_user.id).all()
-        return render_template('home.html', contacts=contacts)
+        return render_template('home.html', contacts=contacts, img_url = img_url)
     else:
-        return render_template('home.html', contacts=[])
+        return render_template('home.html', contacts=[], img_url = img_url)
 
 #login - displays login
 @app.route('/login', methods=['GET', 'POST'])
